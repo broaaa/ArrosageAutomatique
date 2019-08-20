@@ -1,7 +1,7 @@
 from app import core
 import logging
 from flask_cors import CORS
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify, Response
 
 app = Flask(__name__)
 CORS(app)
@@ -14,6 +14,8 @@ def herbe():
         return { 'message' : core.main("on","herbe",request.json['temps'])}
     elif request.json["action"] == "off":
         return { 'message' : core.stop_gpio()}
+    else:
+        return Response("{\"message\":\"Unknown action\"}", status=400, content_type='application/json')
     
 @app.route('/api/v1.0/arrosage/potager', methods=['POST'])
 def potager():
@@ -21,6 +23,8 @@ def potager():
         return { 'message' : core.main("on","potager",request.json['temps'])}
     elif request.json["action"] == "off":
         return { 'message' : core.stop_gpio()}
+    else:
+        return Response("{\"message\":\"Unknown action\"}", status=400, content_type='application/json')
 
 @app.route('/api/v1.0/arrosage/status', methods=['GET'])
 def status():
