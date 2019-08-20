@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "4f1830d6-3351-4154-a188-1f6f36f7956a",
+		"name": "Arrosage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "potager",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"action\": \"on\",\n\t\"temps\": 3\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/api/v1.0/arrosage/potager",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1.0",
+						"arrosage",
+						"potager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "herbe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"action\": \"on\",\n\t\"temps\": 10\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/api/v1.0/arrosage/herbe",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1.0",
+						"arrosage",
+						"herbe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:5000/api/v1.0/arrosage/status",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1.0",
+						"arrosage",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
