@@ -28,6 +28,12 @@ def potager():
 
 @app.route('/api/v1.0/arrosage/status', methods=['GET'])
 def status():
+    # return Response("{\"message\":\"Unknown action\"}", status=400, content_type='application/json')
+    return core.getStatus()
+
+@app.route('/api/v1.0/arrosage/stop', methods=['POST'])
+def stop():
+    core.stop_gpio()
     return core.getStatus()
 
 if __name__ == '__main__':

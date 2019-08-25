@@ -38,16 +38,24 @@ export class ApiService {
     };
   }
 
-  postHerbe(time : Number): Observable<any> {
+  postHerbe(time : number):  Promise<any> {
     console.log('posting herbe');
-    return this.http.post(endpoint + 'herbe', {"action": "on","temps": time}).pipe(
-      catchError(this.handleError<any>('addProduct'))
-    );
+    time *= time * 60;
+    return this.http.post(endpoint + 'herbe', {"action": "on","temps": time}).toPromise();
   }
 
-  postPotager(): Observable<any> {
-    return this.http.get(endpoint + 'products').pipe(
-      map(this.extractData));
+  postPotager(time: number):  Promise<any> {
+    time *= 60;
+    console.log('posting potager');
+    return this.http.post(endpoint + 'potager', {"action": "on","temps": time}).toPromise();
+  }
+
+  postStop() : Promise<any> {
+    return this.http.post(endpoint + 'stop', '').toPromise();
+  }
+
+  getStatus() : Promise<any> {
+    return this.http.get(endpoint + 'status').toPromise();
   }
 
 }

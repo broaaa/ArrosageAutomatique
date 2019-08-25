@@ -1,23 +1,35 @@
 import json
 
 electrovannesHerbe = {
-    2: "off",
-    3: "off"
+    '2': "off",
+    '3': "off"
 }
 
 electrovannesPotager = {
-    4: "off"
+    '4': "off"
 }
 
-
-def stop_gpio():
+def stopElectrovannePotager():
     print('connecting to GPIO')
-    print('Stopping GPIO')
-    for electrovanne in electrovannesHerbe:
-        electrovannesHerbe[electrovanne] = "off"
+    print('Stopping Electrovanne potager')
     for electrovanne in electrovannesPotager:
         electrovannesPotager[electrovanne] = "off"
     print('exiting GPIO')
+    print('-------------------------')
+    return "stopped potager"
+
+def stopElectrovanneHerbe():
+    print('connecting to GPIO')
+    print('Stopping Electrovanne herbe')
+    for electrovanne in electrovannesHerbe:
+        electrovannesHerbe[electrovanne] = "off"
+    print('exiting GPIO')
+    print('-------------------------')
+    return "stopped herbe"
+
+def stop_gpio():
+    stopElectrovanneHerbe()
+    stopElectrovannePotager()
     # GPIO.setmode(GPIO.BCM)
     # GPIO.setup(2, GPIO.OUT,initial=GPIO.HIGH)
     # GPIO.setup(3, GPIO.OUT,initial=GPIO.HIGH)
@@ -27,8 +39,7 @@ def stop_gpio():
     
     # GPIO.output(4, GPIO.HIGH)
     # GPIO.cleanup() """
-    print('-------------------------')
-    return "stopped"
+    return "stopped GPIO"
 
 def startElectrovanneHerbe():
     print('connecting to GPIO')
@@ -65,4 +76,4 @@ def startElectrovannePotager():
 def get_status():
     print('returning GPIO status ')
     print('-------------------------')
-    return {'herbe': str(electrovannesHerbe), 'potager': str(electrovannesPotager)}
+    return {'herbe': electrovannesHerbe, 'potager': electrovannesPotager}

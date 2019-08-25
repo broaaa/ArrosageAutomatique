@@ -13,12 +13,16 @@ import logging
 from . import gpio
 
 def stop_gpio():
-    gpio.stop_gpio()
-    return "stopped"
+    return gpio.stop_gpio()
 
-def timer(duree):
+def timer(duree, mode):
     time.sleep(duree)
-    stop_gpio()
+    if mode=="herbe":
+      gpio.stopElectrovanneHerbe()
+    elif mode=="potager":
+      gpio.stopElectrovannePotager()
+    else:
+      stop_gpio()
 
 def main(action,mode,temps):
   try:
@@ -41,13 +45,14 @@ def main(action,mode,temps):
     ------------------------------------------------
     """)
 
-      threading.Thread(target=timer, args=(duree,)).start()
+      threading.Thread(target=timer, args=(duree, mode,)).start()
       return "well done"
 
   except Exception as e:
     print("error : " , str(e))
-    stop_gpio
+    stop_gpio()
     logging.error("Error : " , str(e))
+    return str(e)
 
 def getStatus():
     return gpio.get_status()
