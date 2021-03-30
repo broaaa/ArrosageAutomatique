@@ -10,57 +10,55 @@ electrovannesPotager = {
 }
 
 def stopElectrovannePotager():
-    print('connecting to GPIO')
-    print('Stopping Electrovanne potager')
+    print('potager - connecting to GPIO')
+    print('potager - stopping Electrovanne potager')
     for electrovanne in electrovannesPotager:
+        print('potager - stoping electrovanne ', str(electrovanne))
+        GPIO.setup(electrovanne, GPIO.OUT,initial=GPIO.HIGH)
+        GPIO.output(electrovanne, GPIO.HIGH)
         electrovannesPotager[electrovanne] = "off"
-    print('exiting GPIO')
+    print('potager - exiting GPIO')
     print('-------------------------')
     return "stopped potager"
 
 def stopElectrovanneHerbe():
-    print('connecting to GPIO')
-    print('Stopping Electrovanne herbe')
+    print('herbe - connecting to GPIO')
+    print('herbe - stopping Electrovanne herbe')
     for electrovanne in electrovannesHerbe:
+        print('herbe - stoping electrovanne ', str(electrovanne))
+        GPIO.setup(electrovanne, GPIO.OUT,initial=GPIO.HIGH)
+        GPIO.output(electrovanne, GPIO.HIGH)
         electrovannesHerbe[electrovanne] = "off"
-    print('exiting GPIO')
+    print('herbe - exiting GPIO')
     print('-------------------------')
     return "stopped herbe"
 
 def stop_gpio():
     stopElectrovanneHerbe()
     stopElectrovannePotager()
-    # GPIO.setmode(GPIO.BCM)
-    # GPIO.setup(2, GPIO.OUT,initial=GPIO.HIGH)
-    # GPIO.setup(3, GPIO.OUT,initial=GPIO.HIGH)
-    # GPIO.setup(4, GPIO.OUT,initial=GPIO.HIGH)
-    # GPIO.output(2, GPIO.HIGH)
-    # GPIO.output(3, GPIO.HIGH)
     
-    # GPIO.output(4, GPIO.HIGH)
-    # GPIO.cleanup() """
     return "stopped GPIO"
 
 def startElectrovanneHerbe():
-    print('connecting to GPIO')
+    print('herbe - connecting to GPIO')
     for electrovanne in electrovannesHerbe:
-        print('connecting electrovanne ', str(electrovanne))
-        print('starting electrovanne ', str(electrovanne))
+        print('herbe - connecting electrovanne ', str(electrovanne))
+        print('herbe - starting electrovanne ', str(electrovanne))
+        GPIO.setup(electrovanne, GPIO.OUT,initial=GPIO.HIGH)
+        GPIO.output(electrovanne, GPIO.LOW)
         electrovannesHerbe[electrovanne] = "on"
     print('exiting GPIO')
-    #GPIO.setup(electrovanne, GPIO.OUT,initial=GPIO.HIGH)
-    #GPIO.output(electrovanne, GPIO.LOW)
     print('-------------------------')
 
 def startElectrovannePotager():
-    print('connecting to GPIO')
+    print('potager - connecting to GPIO')
     for electrovanne in electrovannesPotager:
-        print('connecting electrovanne ', str(electrovanne))
-        print('starting electrovanne ', str(electrovanne))
+        print('potager - connecting electrovanne ', str(electrovanne))
+        print('potager - starting electrovanne ', str(electrovanne))
+        GPIO.setup(electrovanne, GPIO.OUT,initial=GPIO.HIGH)
+        GPIO.output(electrovanne, GPIO.LOW)
         electrovannesPotager[electrovanne] = "on"
     print('exiting GPIO')
-    #GPIO.setup(electrovanne, GPIO.OUT,initial=GPIO.HIGH)
-    #GPIO.output(electrovanne, GPIO.LOW)
     print('-------------------------')
 
 # def stop_electrovanne(number):

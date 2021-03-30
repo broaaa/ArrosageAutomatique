@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   potagerStatus: string = 'off'
   log: string;
   time: number = 5;
+  timeValue: string = "Minutes"
+
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {

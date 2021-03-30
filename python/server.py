@@ -1,10 +1,11 @@
 from app import core
 import logging
-from flask_cors import CORS
 from flask import Flask,request,jsonify, Response
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+app.config['CORS_HEADERS'] = 'application/json'
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 logging.basicConfig(filename='./log/arrosage.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 
@@ -16,8 +17,8 @@ def herbe():
         return { 'message' : core.stop_gpio()}
     else:
         return Response("{\"message\":\"Unknown action\"}", status=400, content_type='application/json')
-    
-@app.route('/api/v1.0/arrosage/potager', methods=['POST'])
+
+@app.route('/api/v1.0/arrosage/potager', methods=['POST'])   
 def potager():
     if request.json["action"] == "on":
         return { 'message' : core.main("on","potager",request.json['temps'])}
@@ -28,8 +29,10 @@ def potager():
 
 @app.route('/api/v1.0/arrosage/status', methods=['GET'])
 def status():
-    # return Response("{\"message\":\"Unknown action\"}", status=400, content_type='application/json')
-    return core.getStatus()
+    status = jsonify(core.getStatus())
+    print(status)
+    return status #, status=200, content_type='application/json')
+    #return 
 
 @app.route('/api/v1.0/arrosage/stop', methods=['POST'])
 def stop():
@@ -37,4 +40,4 @@ def stop():
     return core.getStatus()
 
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=True,host='0.0.0.0', port=5000)

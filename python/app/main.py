@@ -64,9 +64,9 @@ def main():
       logging.warning("Remise a zero des entrees/sorties")
       GPIO.cleanup()
   except Exception as e:
-    print("error : " + e)
+    print("error : ", e)
     GPIO.cleanup()
-    logging.warning("Error : " + e)
+    logging.warning("Error : "+ e)
 
 if __name__ == '__main__':
     main()

@@ -8,7 +8,7 @@ Injectable({
 })
 
 
-const endpoint = 'http://127.0.0.1:5000/api/v1.0/arrosage/';
+const endpoint = 'http://192.168.1.10:5000/api/v1.0/arrosage/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -41,21 +41,21 @@ export class ApiService {
   postHerbe(time : number):  Promise<any> {
     console.log('posting herbe');
     time *= time * 60;
-    return this.http.post(endpoint + 'herbe', {"action": "on","temps": time}).toPromise();
+    return this.http.post(endpoint + 'herbe', {"action": "on","temps": time}, httpOptions).toPromise();
   }
 
   postPotager(time: number):  Promise<any> {
     time *= 60;
     console.log('posting potager');
-    return this.http.post(endpoint + 'potager', {"action": "on","temps": time}).toPromise();
+    return this.http.post(endpoint + 'potager', {"action": "on","temps": time}, httpOptions).toPromise();
   }
 
   postStop() : Promise<any> {
-    return this.http.post(endpoint + 'stop', '').toPromise();
+    return this.http.post(endpoint + 'stop', '', httpOptions).toPromise();
   }
 
   getStatus() : Promise<any> {
-    return this.http.get(endpoint + 'status').toPromise();
+    return this.http.get(endpoint + 'status', httpOptions).toPromise();
   }
 
 }
