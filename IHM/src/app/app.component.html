@@ -1,21 +1,29 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <div>
-    <button class="button" [style.background]="herbeStatus == 'on' ? '#4CAF50' : '#DB1702'" (click)="handleHerbe()">Herbe</button>
-    <!-- <button [style.background]="'blue'">Potager</button> -->
-    <button class="button" [style.background]="potagerStatus == 'on' ? '#4CAF50' : '#DB1702'"  (click)="handlePotager()">Potager</button><br/>
-    <label>Temps (en minutes)</label>
-    <input [(ngModel)]="time" type="number" name="time" max="100" />
+<div class="container">
+  <header class="blog-header py-3">
+    
+      
+          <h1 class="text-center">
+            Welcome to {{ title }}!
+          </h1>
+   
+      
+  </header>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav>
+      <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/jardin" routerLinkActive="active">JARDIN</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/volets" routerLinkActive="active">VOLETS</a>
+        </li>
+      </ul>
+    </nav>
   </div>
-  <br/>
-  <div>
-    <button class="button" (click)="getStatus()">Statut</button>
-  </div>
-  <div>
-      <button class="button" (click)="handleStop()">Eteindre arrosage</button><br/>
-  </div>
-  <label>{{ log }}</label>
 </div>
+<main class="container">
+  <router-outlet>
+
+  </router-outlet>
+</main>

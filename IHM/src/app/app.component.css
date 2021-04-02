@@ -1,3 +1,24 @@
+.nav-scroller .nav-fill .nav-item{
+  background-color: #3e8e41;
+  background-size: 50%;
+}
+
+.nav-scroller .nav-fill .nav-item a{
+  color: white;
+  font-size:20px;
+  font-weight: 4;
+}
+
+.nav-scroller .nav-fill .nav-item a.active{
+  text-decoration: underline;
+  background:none;
+  border: 1px solid rgb(201, 65, 225);
+  border-radius: 0;
+  background-color: rgb(66, 185, 112);
+}
+
+
+
 .button {
     display: inline-block;
     padding: 15px 25px;
@@ -36,3 +57,5 @@
     margin-top:10px;
     display:block;
     }
+    
+    

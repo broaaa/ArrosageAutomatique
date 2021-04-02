@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="col">
+        <div class="position-relative">
+            <div id="sautDeLigne"></div>
+            <div>
+                <div class="p-1 border bg-light lead" style="text-align: center;">
+                    <label>{{ time }} Minutes</label>
+                </div>
+                <div class="slidecontainer">
+                    <input (input)="valueChanged($event)" type="range" min="1" max="60" value={{time}} class="slider"
+                        id="myRange">
+                    <output for="foo" onforminput="value = foo.valueAsNumber;"></output>
+                </div>
+                <div id="sautDeLigne"></div>
+                <div class="row">
+                    <div class=" col-sm">
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            [style.background]="potagerStatus == 'on' ? '#4CAF50' : '#b22222'"
+                            (click)="handlePotager()">Herbe</button>
+                    </div>
+                    <div class="col-sm">
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            [style.background]="potagerStatus == 'on' ? '#4CAF50' : '#b22222'"
+                            (click)="handlePotager()">Potager</button>
+                    </div>
+                </div>
+                <div id="sautDeLigne"></div>
+                <button type="button" class="btn status-button btn-primary btn-lg btn-block" (click)="getStatus()">Status</button>
+                <div id="sautDeLigne"></div>
+                <button type="button" class="btn stop-button btn-primary btn-lg btn-block"
+                    (click)="handleStop()">Stop</button>
+            </div>
+        </div>
+    </div>
+    <label>{{ log }}</label>
+</div>
