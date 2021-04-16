@@ -8,7 +8,9 @@ Injectable({
 })
 
 
-const endpoint = 'http://192.168.1.10:5000/api/v1.0/arrosage/';
+const endpoint = 'http://localhost:5000/api/v1.0/arrosage/';
+//const endpoint = 'http://192.168.1.10:5000/api/v1.0/arrosage/';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
