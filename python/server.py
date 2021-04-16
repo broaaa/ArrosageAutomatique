@@ -12,20 +12,23 @@ logging.basicConfig(filename='./log/arrosage.log', format='%(asctime)s %(message
 @app.route('/api/v1.0/arrosage/herbe', methods=['POST'])
 def herbe():
     if request.json["action"] == "on":
-        return { 'message' : core.main("on","herbe",request.json['temps'])}
+        json = core.main("on","herbe",request.json['temps'])
+        return jsonify(json)
     elif request.json["action"] == "off":
         return { 'message' : core.stop_gpio()}
     else:
-        return Response("{\"message\":\"Unknown action\"}", status=400, content_type='application/json')
+        return jsonify({'message':'Unknown action'})
 
 @app.route('/api/v1.0/arrosage/potager', methods=['POST'])   
 def potager():
     if request.json["action"] == "on":
-        return { 'message' : core.main("on","potager",request.json['temps'])}
+        json = core.main("on","potager",request.json['temps'])
+        return jsonify(json)
     elif request.json["action"] == "off":
-        return { 'message' : core.stop_gpio()}
+        json = core.stop_gpio()
+        return jsonify({ 'message' : json})
     else:
-        return Response("{\"message\":\"Unknown action\"}", status=400, content_type='application/json')
+        return jsonify({'message':'Unknown action'})
 
 @app.route('/api/v1.0/arrosage/status', methods=['GET'])
 def status():
@@ -37,7 +40,8 @@ def status():
 @app.route('/api/v1.0/arrosage/stop', methods=['POST'])
 def stop():
     core.stop_gpio()
-    return core.getStatus()
+    return jsonify(core.getStatus())
 
 if __name__ == '__main__':
+    core.initGpio()
     app.run(debug=True,host='0.0.0.0', port=5000)

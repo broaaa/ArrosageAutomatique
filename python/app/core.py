@@ -4,13 +4,16 @@
 #       - duree en secondes
 #   exemple : lancement de la partie herbe pendant 5min --> python3 main.py 1 300
 
-# import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
 import sys
 import threading
 import tqdm
 import logging
 from . import gpio
+
+def initGpio():
+  gpio.init()
 
 def stop_gpio():
     return gpio.stop_gpio()
@@ -49,7 +52,6 @@ def main(action,mode,temps):
       return "well done"
 
   except Exception as e:
-    print("error : " , str(e))
     stop_gpio()
     logging.error("Error : " , str(e))
     return str(e)

@@ -1,13 +1,17 @@
 import json
+import RPi.GPIO as GPIO
 
 electrovannesHerbe = {
-    '2': "off",
-    '3': "off"
+    2: "off",
+    3: "off"
 }
 
 electrovannesPotager = {
-    '4': "off"
+    4: "off"
 }
+
+def init():
+    GPIO.setmode(GPIO.BCM)
 
 def stopElectrovannePotager():
     print('potager - connecting to GPIO')
@@ -60,16 +64,6 @@ def startElectrovannePotager():
         electrovannesPotager[electrovanne] = "on"
     print('exiting GPIO')
     print('-------------------------')
-
-# def stop_electrovanne(number):
-#     print('connecting to GPIO')
-#     print('connecting electrovanne ', str(number))
-#     #GPIO.setup(electrovanne, GPIO.OUT,initial=GPIO.HIGH)
-#     print('stoping electrovanne ', str(number))
-#     electrovannesMock[number] = "off"
-#     #GPIO.output(electrovanne, GPIO.HIGH)
-#     print('exiting GPIO')
-#     print('-------------------------')
 
 def get_status():
     print('returning GPIO status ')

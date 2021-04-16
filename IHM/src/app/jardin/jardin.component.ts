@@ -35,6 +35,20 @@ export class JardinComponent implements OnInit {
     });
   }
 
+  handleHerbe() {
+    if (!this.checkTime())
+      return;
+    this.api.postHerbe(this.time)
+      .then(res => {
+        this.log = JSON.stringify(res);
+        this.herbeStatus = 'on';
+      }).catch(err => {
+        this.herbeStatus = 'off';
+        this.log = err;
+        console.log('error when calling api:' + err);
+      });
+  }
+
   handlePotager() {
     if (!this.checkTime())
       return;
