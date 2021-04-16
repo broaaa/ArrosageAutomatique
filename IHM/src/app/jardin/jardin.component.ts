@@ -30,7 +30,7 @@ export class JardinComponent implements OnInit {
       this.potagerStatus = res.potager['4'];
       console.log('herbe=' + this.herbeStatus + '   potager=' + this.potagerStatus);
     }).catch(err => {
-      this.log = err;
+      this.log = JSON.stringify(err);
       console.log(err);
     });
   }

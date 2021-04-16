@@ -3,7 +3,7 @@
 #       - Choix de la zone (1 : Herbe, 2 : potager+bambou)
 #       - duree en secondes
 #   exemple : lancement de la partie herbe pendant 5min --> python3 main.py 1 300
-
+""" 
 import RPi.GPIO as GPIO
 import time
 import sys
@@ -70,3 +70,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+ """

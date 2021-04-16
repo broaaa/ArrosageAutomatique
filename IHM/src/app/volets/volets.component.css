@@ -1,0 +1,15 @@
+.location {
+    font-size: 150%;
+}
+
+.right {
+    border-left: solid 2px slategray;
+}
+
+[type='radio'] {
+    display: none; 
+    }
+
+#sautDeLigne{
+    height: 200px;
+}

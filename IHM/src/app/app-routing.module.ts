@@ -6,9 +6,8 @@ import { VoletsComponent } from './volets/volets.component'
 
 const routes: Routes = [
   { path: 'jardin', component: JardinComponent },
-  { path: 'volet', component: VoletsComponent },
-  { path: '', redirectTo: '/jardin', pathMatch: 'full' },
-  { path: '**', component: JardinComponent }
+  { path: 'volets', component: VoletsComponent },
+  { path: '', redirectTo: '/jardin', pathMatch: 'full' }
 ];
 
 @NgModule({
